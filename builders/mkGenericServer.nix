@@ -52,7 +52,7 @@
 
         cd \$DIRECTORY
         chmod 755 -R .
-        ${startCmd}
+        exec ${startCmd} "\$@"
       EOF
       chmod +x $out/bin/runServer.sh
 
@@ -69,7 +69,5 @@ in
       serverRuntime
     ];
 
-    runScript = ''
-      runServer.sh
-    '';
+    runScript = "runServer.sh";
   }
