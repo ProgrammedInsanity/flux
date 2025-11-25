@@ -5,12 +5,13 @@
 }: {
   name,
   appId,
+  workshopId ? null,
   branch ? null,
   hash,
 }:
 stdenvNoCC.mkDerivation {
   name = "${name}-src";
-  inherit appId branch;
+  inherit appId workshopId branch;
   builder = ./builder.sh;
   buildInputs = [
     steamcmd
