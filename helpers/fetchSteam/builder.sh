@@ -11,6 +11,7 @@ mkdir -p downloadDir
 cd downloadDir
 if [ -z "$workshopId" ]; then
     steamcmd +force_install_dir "$(pwd)" +login anonymous +app_update $appId validate +quit
+    sed -i 's/^\([[:space:]]*"LastUpdated"[[:space:]]*\)"[^"]*"/\1"0"/' ./steamapps/appmanifest_${appId}.acf
     cp -r . $out
 else
     steamcmd +force_install_dir "$(pwd)" +login anonymous +workshop_download_item $appId $workshopId +quit
